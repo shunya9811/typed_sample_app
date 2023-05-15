@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    @user = User.new
     # => app/views/users/new.html.erb
   end
 end
