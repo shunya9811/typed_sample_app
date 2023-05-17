@@ -22,5 +22,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect! # => GET /users/:id !は破壊的メソッド 戻れなくなるから注意してねって感じ
     assert_template 'users/show'
+    assert is_logged_in?
   end
 end
