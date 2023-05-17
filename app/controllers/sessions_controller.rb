@@ -4,11 +4,18 @@ class SessionsController < ApplicationController
 
   def create 
     user = User.find_by(email: params[:session][:email].downcase)
-    if user&.authenticate(params[:session][:password])
-      reset_session      # ログインの直前に必ずこれを書くこと セキュリティ事故を防ぐため
+    if user && user.authenticate(params[:session][:password])
+      reset_session
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       redirect_to user
+    # 9.3.1の演習をやった場合 10章で変更しなきゃになるかもだからコメントアウトしておく
+    # @user = User.find_by(email: params[:session][:email].downcase)
+    # if @user && @user.authenticate(params[:session][:password])
+    #   reset_session
+    #   params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+    #   log_in @user
+    #   redirect_to @user
     else
       flash.now[:danger] = 'Invalid email/passward combination' 
       render 'new', status: :unprocessable_entity
