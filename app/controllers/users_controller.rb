@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+
+  # GET /users
+  def index
+    @users = User.paginate(page: params[:page])
+  end
 
   # GET /users/:id
   def show
@@ -27,9 +32,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/:id/edit	
   def edit
   end
 
+  # PATCH /users/:id
   def update
     if @user.update(user_params)
       flash[:success] = "Profile updated"
