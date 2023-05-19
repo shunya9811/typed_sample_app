@@ -39,6 +39,9 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  host = 'shunya9811-ideal-fiesta-q6766w7q95vf9rqx.github.dev/'
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
