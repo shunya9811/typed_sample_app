@@ -35,3 +35,6 @@
 /config/master.key
 
 dump.rdb
+
+# gem の型定義ファイル
+.gem_rbs_collection/

@@ -20,6 +20,10 @@ gem "jbuilder",                   "2.11.5"
 gem "puma",                       "5.6.5"
 gem "bootsnap",                   "1.16.0", require: false
 gem "sqlite3",                    "1.6.1"
+gem "rbs",                        "3.1.0",  require: false
+gem 'rbs_rails',                  "0.12.0", require: false
+gem 'steep',                      "1.4.0",  require: false
+
 
 group :development, :test do
   gem "debug",   "1.7.1", platforms: %i[ mri mingw x64_mingw ]
