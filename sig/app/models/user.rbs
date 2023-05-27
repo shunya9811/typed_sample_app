@@ -1,0 +1,64 @@
+class User < ApplicationRecord
+  attr_accessor remember_token: untyped
+
+  attr_accessor activation_token: untyped
+
+  attr_accessor reset_token: untyped
+
+  # ALID_EMAIL_REGEX= /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX: ::Regexp
+
+  # 渡された文字列のハッシュ値を返す
+  def self.digest: (untyped string) -> untyped
+
+  # ランダムなトークンを返す
+  def self.new_token: () -> untyped
+
+  # 永続セッションのためにユーザーをデータベースに記憶する
+  def remember: () -> untyped
+
+  # セッションハイジャック防止のためにセッショントークンを返す
+  # この記憶ダイジェストを再利用しているのは単に利便性のため
+  def session_token: () -> untyped
+
+  # 渡されたトークンがダイジェストと一致したらtrueを返す
+  def authenticated?: (untyped attribute, untyped token) -> (false | untyped)
+
+  # ユーザーのログイン情報を破棄する
+  def forget: () -> untyped
+
+  # アカウントを有効にする
+  def activate: () -> untyped
+
+  # 有効化用のメールを送信する
+  def send_activation_email: () -> untyped
+
+  # パスワード再設定の属性を設定する
+  def create_reset_digest: () -> untyped
+
+  # パスワード再設定のメールを送信する
+  def send_password_reset_email: () -> untyped
+
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?: () -> untyped
+
+  # SQLインジェクション（SQL Injection）の対策のため、常にエスケープするようにする
+  def feed: () -> untyped
+
+  # ユーザーをフォローする
+  def follow: (untyped other_user) -> (untyped | nil)
+
+  # ユーザーをフォロー解除する
+  def unfollow: (untyped other_user) -> untyped
+
+  # 現在のユーザーが他のユーザーをフォローしていればtrueを返す
+  def following?: (untyped other_user) -> untyped
+
+  private
+
+  # メールアドレスをすべて小文字にする
+  def downcase_email: () -> untyped
+
+  # 有効化トークンとダイジェストを作成および代入する
+  def create_activation_digest: () -> untyped
+end
